@@ -1,7 +1,21 @@
 view: test {
-  sql_table_name: `mzcdsc-team-200716.project_b_team.{% parameter table_name %}` ;;
+    sql_table_name:`mzcdsc-team-200716.project_b_team.bw_subway_passenger_list`   ;;
 
 
+
+
+parameter: select {
+  label: "선택1"
+  type: unquoted
+  allowed_value: {
+    label: "yes"
+    value: "yes"
+  }
+  allowed_value: {
+    label: "no"
+    value: "no"
+  }
+}
 parameter: table_name {
   label: "테이블 선택"
   type: unquoted
@@ -22,6 +36,16 @@ parameter: table_name {
     label: "거래 주차"
     type: string
     sql:   ${dt_year} ||"-W"||EXTRACT(WEEK FROM dt);;
+  }
+
+
+  dimension: transaction_weekend_2{
+    group_label: "시점"
+    hidden: yes
+    label: "거래 주차_안보임"
+    type: string
+    sql:   ${dt_year} ||"-W"||EXTRACT(WEEK FROM dt);;
+
   }
 
 
@@ -80,6 +104,8 @@ dimension_group:  dt{
 
 
 dimension: subway_line_no_cd {
+# required_access_grants: ["{% parameter date_type %}"]
+  hidden: yes
   type: string
 }
 dimension: station_no_cd  {
