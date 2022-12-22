@@ -6,6 +6,7 @@ project_name: "test3"
 local_dependency: {
    project: "test2"
  }
-# remote_dependency: MyGitRepo{
-#   url: "https://github.com/NoahMZC/Lookertest"
-# }
+remote_dependency: MyGitRepo{
+  url: "https://github.com/NoahMZC/Lookertest"
+  ref: "master"
+}
